@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # TaskFlow 📋
 
 Aplicativo mobile de gerenciamento de tarefas — React Native + Expo + TypeScript.
@@ -149,3 +150,6 @@ taskflow/
 |      |    |
 
 > Preencha com os dados do grupo antes de entregar.
+=======
+# TaskFlow
+>>>>>>> c6180c52d89b13239c2d14ab0631e64d3e97f684
