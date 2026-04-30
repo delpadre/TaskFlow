@@ -16,6 +16,7 @@ import { Header } from '../../components/Header';
 import { api } from '../../services/api';
 import { Quote } from '../../services/api';
 import { Pressable } from 'react-native';
+import { TabParamList } from '../../types/navigation';
 
 
 type Props = BottomTabScreenProps<TabParamList, 'Home'>;
