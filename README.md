@@ -1,36 +1,39 @@
-<<<<<<< HEAD
 # TaskFlow 📋
 
-Aplicativo mobile de gerenciamento de tarefas — React Native + Expo + TypeScript.
+> Aplicativo mobile de gerenciamento de tarefas desenvolvido em React Native com Expo e TypeScript.
 
 ---
 
-## 🚀 Como rodar
+## 📱 Sobre o projeto
 
-### Pré-requisitos
-- Node.js 18+
-- npm ou yarn
-- Expo CLI: `npm install -g expo-cli`
-- App **Expo Go** no celular (iOS ou Android)
+O TaskFlow é um app mobile completo para gerenciamento de tarefas pessoais. O usuário pode criar, visualizar, editar e remover tarefas, filtrar por status, personalizar o tema e muito mais — tudo com persistência local e consumo de API externa.
 
-### Instalação
+---
 
-```bash
-# 1. Instale as dependências
-npm install
+## ✨ Funcionalidades
 
-# 2. Inicie o servidor
-npx expo start
+- 🔐 **Autenticação** com login, logout e sessão persistida
+- 📋 **CRUD completo** de tarefas
+- 🔍 **Filtro** por status (Todas, Pendente, Em andamento, Concluída)
+- 💾 **Persistência local** com AsyncStorage
+- 🌐 **Consumo de API** para frase motivacional do dia
+- 🌙 **Tema dark e light** persistido
+- 🎩 **Preferência de tratamento** (Sr., Sra., Srta.)
+- 📊 **Dashboard** com resumo de tarefas e progresso
 
-# 3. Escaneie o QR Code com o Expo Go
-```
+---
 
-### Credenciais de acesso
+## 🛠️ Tecnologias
 
-| Usuário | Senha | Papel | Rota inicial |
-|---------|-------|-------|--------------|
-| `admin` | `123` | Administrador | Configurações |
-| `user`  | `123` | Usuário Comum | Home |
+| Tecnologia | Uso |
+|------------|-----|
+| React Native | Framework mobile |
+| Expo | Plataforma de desenvolvimento |
+| TypeScript | Tipagem estática |
+| React Navigation | Navegação (Stack + Bottom Tabs) |
+| AsyncStorage | Persistência local |
+| Context API | Estado global |
+| Fetch API | Consumo de API externa |
 
 ---
 
@@ -56,12 +59,17 @@ taskflow/
     │   └── useTasks.ts
     ├── routes/
     │   ├── AppRoutes.tsx
+    │   ├── HomeStackRoutes.tsx
+    │   ├── SettingsStackRoutes.tsx
     │   ├── TabRoutes.tsx
     │   └── TaskStackRoutes.tsx
     ├── screens/
-    │   ├── home/HomeScreen.tsx
-    │   ├── login/LoginScreen.tsx
-    │   ├── settings/SettingsScreen.tsx
+    │   ├── home/
+    │   │   └── HomeScreen.tsx
+    │   ├── login/
+    │   │   └── LoginScreen.tsx
+    │   ├── settings/
+    │   │   └── SettingsScreen.tsx
     │   └── tasks/
     │       ├── TaskDetailScreen.tsx
     │       ├── TaskFormScreen.tsx
@@ -80,76 +88,120 @@ taskflow/
 
 ---
 
-## ✅ Funcionalidades implementadas
+## 🚀 Como rodar o projeto
 
-### Autenticação
-- [x] Login com credenciais hardcoded
-- [x] Persistência da sessão com AsyncStorage
-- [x] Logout com confirmação
-- [x] Redirecionamento por perfil (admin → Settings, user → Home)
+### Pré-requisitos
 
-### Tarefas (CRUD)
-- [x] Criar tarefa com título, descrição, status, prioridade e categoria
-- [x] Listar tarefas com FlatList
-- [x] Visualizar detalhes da tarefa
-- [x] Editar tarefa existente
-- [x] Excluir tarefa com confirmação
-- [x] Filtrar por status (Todas / Pendente / Em andamento / Concluída)
-- [x] Persistência local com AsyncStorage
+- [Node.js](https://nodejs.org/) 18+
+- [Expo Go](https://expo.dev/go) instalado no celular
+- npm ou yarn
 
-### Navegação
-- [x] Stack Navigation + Bottom Tab Navigation
-- [x] Fluxo: Login → Tabs (Home / Tarefas / Configurações)
-- [x] TaskStack: Lista → Detalhe → Edição
+### Instalação
 
-### Consumo de API
-- [x] Frase motivacional do dia (api.quotable.io)
-- [x] Categorias de tarefas (dummyjson.com)
-- [x] Tratamento de loading e erro
-- [x] Fallback offline para ambas as APIs
+```bash
+# Clone o repositório
+git clone https://github.com/delpadre/taskflow.git
 
-### Context API
-- [x] `AuthContext` — autenticação e tratamento
-- [x] `TaskContext` — CRUD de tarefas
-- [x] `ThemeContext` — tema claro/escuro
+# Entre na pasta
+cd taskflow
 
-### Hooks customizados
-- [x] `useTasks` — filtro, CRUD e busca por ID
+# Instale as dependências
+npm install --legacy-peer-deps
 
-### UI/UX
-- [x] Tema claro e escuro persistido
-- [x] Header com nome, perfil e botão de logout
-- [x] Empty state na lista
-- [x] Badges de status e prioridade com cores
-- [x] FAB para criar tarefa
-- [x] Resumo de tarefas na Home
-- [x] Configurações: tema + preferência de tratamento + perfil
+# Inicie o projeto
+npx expo start
+```
 
-### TypeScript
-- [x] Sem `any` — tipagem completa
-- [x] Props, estados, contextos, navegação e API tipados
+### Rodando no celular
+
+1. Instale o **Expo Go** no seu celular
+2. Rode `npx expo start` no terminal
+3. Escaneie o QR Code com o Expo Go (Android) ou câmera (iOS)
 
 ---
 
-## 🔧 Tecnologias
+## 🔑 Credenciais de acesso
 
-- **React Native** + **Expo** (~51)
-- **TypeScript** (strict mode)
-- **React Navigation** (Stack + Bottom Tabs)
-- **AsyncStorage** (persistência local)
-- **fetch** nativo (consumo de API)
+| Usuário | Senha | Perfil | Rota inicial |
+|---------|-------|--------|--------------|
+| `user` | `123` | Usuário Comum | Home |
+| `admin` | `123` | Administrador | Configurações |
 
 ---
 
-## 🧑‍💻 Integrantes
+## 📐 Arquitetura
+
+O projeto segue separação de responsabilidades:
+
+- **screens** → Interface do usuário (UI)
+- **components** → Componentes reutilizáveis
+- **services** → Comunicação com API e AsyncStorage
+- **context** → Estado global com Context API
+- **hooks** → Lógica reutilizável (`useTasks`)
+- **types** → Tipagem TypeScript
+- **utils** → Funções utilitárias
+
+---
+
+## 🗺️ Navegação
+
+```
+Login
+  └── Main (Bottom Tabs)
+        ├── Home (HomeStack)
+        │     └── HomeScreen
+        ├── Tarefas (TaskStack)
+        │     ├── TaskListScreen
+        │     ├── TaskFormScreen
+        │     └── TaskDetailScreen
+        └── Configurações (SettingsStack)
+              └── SettingsScreen
+```
+
+---
+
+## 📦 Modelo de dados
+
+```typescript
+export type TaskStatus = 'pendente' | 'em_andamento' | 'concluida';
+export type TaskPriority = 'baixa' | 'media' | 'alta';
+
+export interface Task {
+  id: string;
+  title: string;
+  description: string;
+  status: TaskStatus;
+  priority: TaskPriority;
+  category: string;
+  categoryIcon: string;
+  createdAt: string;
+  updatedAt: string;
+}
+```
+
+---
+
+## 🌐 APIs utilizadas
+
+| API | Uso |
+|-----|-----|
+| [Quotable.io](https://api.quotable.io) | Frase motivacional do dia |
+
+---
+
+## 👨‍💻 Integrantes
 
 | Nome | RM |
 |------|----|
-|      |    |
-|      |    |
-|      |    |
+| Giovanna Franco | 553701 |
+| Rafael Del Padre | 552765 |
+| Rafael de Almeida | 554019 |
 
-> Preencha com os dados do grupo antes de entregar.
-=======
-# TaskFlow
->>>>>>> c6180c52d89b13239c2d14ab0631e64d3e97f684
+
+---
+
+## 📄 Licença
+
+Este projeto foi desenvolvido para fins acadêmicos.
+---
+Link do vídeo: https://youtu.be/EpI6BaFzdWM
